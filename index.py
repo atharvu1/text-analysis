@@ -17,8 +17,8 @@ from werkzeug.contrib.fixers import ProxyFix
 
 
 app = Flask(__name__)
-cors = CORS( app )
-
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 model = pickle.load(open('Minor_project_ml_model.pickle', 'rb'))
 
