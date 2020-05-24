@@ -1,14 +1,11 @@
 # app.py
 import flask
 from flask import Flask, render_template, request
-from jinja2 import  Environment
-from jinja2.loaders import FileSystemLoader
-#import json
 import pickle
 from flask_cors import CORS
 import nltk
-#nltk.download('averaged_perceptron_tagger')
-#nltk.download('wordnet')
+# nltk.download('averaged_perceptron_tagger')
+# nltk.download('wordnet')
 from nltk.tokenize import word_tokenize
 from nltk.stem.wordnet import WordNetLemmatizer
 from nltk.tag import pos_tag
@@ -44,7 +41,6 @@ def remove_noise(tweet_tokens, stop_words = ()):
 # home route
 @app.route("/")
 def home():
-    #return render_template('index.html')
     return 'Home page'
 
 # serving form web page
