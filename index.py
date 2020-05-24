@@ -1,6 +1,6 @@
 # app.py
 import flask
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, make_response
 import pickle
 from flask_cors import CORS, cross_origin
 import nltk
@@ -19,7 +19,7 @@ import json
 
 app = Flask(__name__)
 # cors = CORS(app)
-# app.config['CORS_HEADERS'] = 'Content-Type'
+app.config['CORS_HEADERS'] = 'Content-Type'
 app.config.from_object(__name__)
 # enable CORS
 CORS(app, resources={r'/*': {'origins': '*'}})
@@ -73,9 +73,14 @@ def analyse_text():
     q = remove_noise(word_tokenize(data['text']))
 
     prediction = model.classify(dict([token, True] for token in q))
+    response = make_response()
+    response.headers.add( "Access-Control-Allow-Origin", "*" )
+    response.headers.add( 'Access-Control-Allow-Headers', "*" )
+    response.headers.add( 'Access-Control-Allow-Methods', "*" )
+    response.data(prediction)
 
     print(prediction)
-    return prediction, 200, {'Access-Control-Allow-Origin': 'http://localhost:3000'}
+    return response
 
 
 if __name__ == "__main__":
