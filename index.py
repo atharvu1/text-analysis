@@ -11,6 +11,11 @@ from nltk.stem.wordnet import WordNetLemmatizer
 from nltk.tag import pos_tag
 import re
 import string
+from flask_restplus import Resource, Api, fields
+from werkzeug.utils import cached_property
+from werkzeug.contrib.fixers import ProxyFix
+
+
 app = Flask(__name__)
 CORS(app)
 
@@ -38,6 +43,13 @@ def remove_noise(tweet_tokens, stop_words = ()):
         if len(token) > 0 and token not in string.punctuation and token.lower() not in stop_words:
             cleaned_tokens.append(token.lower())
     return cleaned_tokens
+app.wsgi_app = ProxyFix(app.wsgi_app)
+api = Api(app,
+          version='0.1',
+          title='Our sample API',
+          description='This is our sample API'
+)
+
 # home route
 @app.route("/")
 def home():
