@@ -14,6 +14,7 @@ import string
 from flask_restplus import Resource, Api, fields
 from werkzeug.utils import cached_property
 from werkzeug.contrib.fixers import ProxyFix
+import json
 
 
 app = Flask(__name__)
@@ -62,8 +63,11 @@ def home():
 @cross_origin()
 def analyse_text():
     data = request.data.decode('UTF-8')
-    print("\nRequest : ", data)
-    q = remove_noise(word_tokenize(data))
+    #data = request.data
+    print("Raw data ", data)
+    data = json.loads(data)
+    print("\nRequest : ", data['text'])
+    q = remove_noise(word_tokenize(data['text']))
 
     prediction = model.classify(dict([token, True] for token in q))
 
