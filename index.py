@@ -63,7 +63,7 @@ def home():
 
 # serving form web page
 @app.route( '/get_sentiment', methods=['POST'] )
-@cross_origin(allow_headers=['Content-Type'])
+@cross_origin(origin='localhost', allow_headers=['Content-Type'])
 def analyse_text():
     data = request.data.decode('UTF-8')
     #data = request.data
