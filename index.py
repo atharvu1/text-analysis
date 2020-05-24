@@ -72,7 +72,7 @@ def analyse_text():
     prediction = model.classify(dict([token, True] for token in q))
 
     print(prediction)
-    return prediction
+    return prediction, 200, {'Access-Control-Allow-Origin': '*'}
 
 
 if __name__ == "__main__":
