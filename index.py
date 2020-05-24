@@ -57,13 +57,13 @@ api = Api(app,
 
 # home route
 @app.route("/")
-@cross_origin()
+# @cross_origin()
 def home():
     return 'Home page'
 
 # serving form web page
 @app.route( '/get_sentiment', methods=['POST'] )
-@cross_origin()
+# @cross_origin()
 def analyse_text():
     data = request.data.decode('UTF-8')
     #data = request.data
