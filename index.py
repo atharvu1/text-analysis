@@ -66,4 +66,7 @@ def analyse_text():
 
     print(prediction)
     return prediction
-app.run(debug = True)
+
+
+if __name__ == "__main__":
+    app.run( debug=False )  # for deployment turn it off(False)
