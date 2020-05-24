@@ -22,7 +22,7 @@ app = Flask(__name__)
 app.config['CORS_HEADERS'] = 'Content-Type'
 app.config.from_object(__name__)
 # enable CORS
-CORS(app, resources={r'/*': {'origins': '*'}})
+CORS(app, resources={r'/*': {'origins': 'http://localhost:3000'}})
 
 model = pickle.load(open('Minor_project_ml_model.pickle', 'rb'))
 
