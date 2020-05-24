@@ -18,8 +18,11 @@ import json
 
 
 app = Flask(__name__)
-cors = CORS(app)
-app.config['CORS_HEADERS'] = 'Content-Type'
+# cors = CORS(app)
+# app.config['CORS_HEADERS'] = 'Content-Type'
+app.config.from_object(__name__)
+# enable CORS
+CORS(app, resources={r'/*': {'origins': '*'}})
 
 model = pickle.load(open('Minor_project_ml_model.pickle', 'rb'))
 
