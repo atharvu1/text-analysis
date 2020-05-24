@@ -2,7 +2,7 @@
 import flask
 from flask import Flask, render_template, request
 import pickle
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 import nltk
 # nltk.download('averaged_perceptron_tagger')
 # nltk.download('wordnet')
@@ -18,7 +18,7 @@ from werkzeug.contrib.fixers import ProxyFix
 
 app = Flask(__name__)
 cors = CORS( app )
-app.config['CORS_HEADERS'] = 'Content-Type'
+
 
 model = pickle.load(open('Minor_project_ml_model.pickle', 'rb'))
 
@@ -53,11 +53,13 @@ api = Api(app,
 
 # home route
 @app.route("/")
+@cross_origin()
 def home():
     return 'Home page'
 
 # serving form web page
 @app.route( '/get_sentiment', methods=['POST'] )
+@cross_origin()
 def analyse_text():
     data = request.data.decode('UTF-8')
     print("\nRequest : ", data)
