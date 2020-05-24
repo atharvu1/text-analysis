@@ -73,12 +73,14 @@ def analyse_text():
     q = remove_noise(word_tokenize(data['text']))
 
     prediction = model.classify(dict([token, True] for token in q))
+
     response = make_response()
-    response.headers.add( "Access-Control-Allow-Origin", "*" )
+    '''
+    response.headers.add( "Access-Control-Allow-Origin", "*")
     response.headers.add( 'Access-Control-Allow-Headers', "*" )
     response.headers.add( 'Access-Control-Allow-Methods', "*" )
+    '''
     response.data(prediction)
-
     print(prediction)
     return response
 
