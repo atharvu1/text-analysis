@@ -4,6 +4,7 @@ from flask import Flask, render_template, request, make_response
 import pickle
 from flask_cors import CORS, cross_origin
 import nltk
+nltk.download('all')
 # nltk.download('averaged_perceptron_tagger')
 # nltk.download('wordnet')
 from nltk.tokenize import word_tokenize
