@@ -6,8 +6,8 @@ from flask_cors import CORS, cross_origin
 import nltk
 #nltk.download('all')
 #print(nltk.data.path)
-nltk.data.path.append("/tmp")
-nltk.download("all", download_dir = "/tmp")
+#nltk.data.path.append("/tmp")
+#nltk.download("all", download_dir = "/tmp")
 # nltk.download('averaged_perceptron_tagger')
 # nltk.download('wordnet')
 from nltk.tokenize import word_tokenize
