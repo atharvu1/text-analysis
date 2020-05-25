@@ -22,12 +22,13 @@ import json
 
 
 app = Flask(__name__)
-# cors = CORS(app)
+cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
+'''
 app.config.from_object(__name__)
 # enable CORS
 CORS(app, resources={r'/*': {'origins': 'http://localhost:3000'}})
-
+'''
 model = pickle.load(open('Minor_project_ml_model.pickle', 'rb'))
 
 def remove_noise(tweet_tokens, stop_words = ()):
@@ -61,13 +62,13 @@ api = Api(app,
 
 # home route
 @app.route("/")
-@cross_origin(allow_headers=['Content-Type'])
+#@cross_origin(allow_headers=['Content-Type'])
 def home():
     return 'Home page'
 
 # serving form web page
 @app.route( '/get_sentiment', methods=['POST'] )
-@cross_origin(origin='localhost', allow_headers=['Content-Type'])
+# @cross_origin(origin='localhost', allow_headers=['Content-Type'])
 def analyse_text():
     data = request.data.decode('UTF-8')
     #data = request.data
@@ -78,15 +79,15 @@ def analyse_text():
 
     prediction = model.classify(dict([token, True] for token in q))
 
-    response = make_response()
+    # response = make_response()
     '''
     response.headers.add( "Access-Control-Allow-Origin", "*")
     response.headers.add( 'Access-Control-Allow-Headers', "*" )
     response.headers.add( 'Access-Control-Allow-Methods', "*" )
     '''
-    response.data(prediction)
+    #response.data(prediction)
     print(prediction)
-    return response
+    return prediction
 
 
 if __name__ == "__main__":
