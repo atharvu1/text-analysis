@@ -14,7 +14,7 @@ For Windows<br/>
 For macOS and linux<br/>
 `python app.py`<br/>
 For Windows<br/>
-`py app.py`<br/>
+`py index.py`<br/>
 This will initiate server on [localhost:5000](http://127.0.0.1:5000)<br/>
 ####  Program may give some error on starting server make sure you have all the packages and files installed in your workspace.
 
